@@ -15,9 +15,14 @@ class GitCommitsViewController: UIViewController {
 
     @IBOutlet weak var tblViewRecentCommits: UITableView!
     
+    let vm = GitCommitsViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        vm.getRecentGitCommits { (commits, error) in
+            
+        }
     }
 
 
@@ -25,7 +30,7 @@ class GitCommitsViewController: UIViewController {
 
 extension GitCommitsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return vm.gitCommitsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +38,8 @@ extension GitCommitsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-
+        let gCommit = vm.gitCommit(at: indexPath)
+        
         return cell
     }
 }
