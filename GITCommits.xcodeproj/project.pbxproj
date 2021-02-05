@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		C07E85D425CCAC6C00474475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85D325CCAC6C00474475 /* AppDelegate.swift */; };
 		C07E85D625CCAC6C00474475 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85D525CCAC6C00474475 /* SceneDelegate.swift */; };
-		C07E85D825CCAC6C00474475 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85D725CCAC6C00474475 /* ViewController.swift */; };
 		C07E85DB25CCAC6C00474475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E85D925CCAC6C00474475 /* Main.storyboard */; };
 		C07E85DD25CCAC6E00474475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07E85DC25CCAC6E00474475 /* Assets.xcassets */; };
 		C07E85E025CCAC6E00474475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E85DE25CCAC6E00474475 /* LaunchScreen.storyboard */; };
 		C07E85EB25CCAC6E00474475 /* GITCommitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85EA25CCAC6E00474475 /* GITCommitsTests.swift */; };
 		C07E85F625CCAC6E00474475 /* GITCommitsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85F525CCAC6E00474475 /* GITCommitsUITests.swift */; };
 		C07E860D25CCAD1400474475 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C07E860C25CCAD1400474475 /* README.md */; };
+		C07E861725CCB46A00474475 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E861625CCB46A00474475 /* GitCommit.swift */; };
+		C0F34BF125CD18A400253C8F /* GitCommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34BF025CD18A400253C8F /* GitCommitsViewController.swift */; };
+		C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */; };
+		C0F34C0225CD1B2400253C8F /* GitCommitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34C0125CD1B2400253C8F /* GitCommitsTableViewCell.swift */; };
+		C0F34C0A25CD1C5400253C8F /* GitCommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,6 @@
 		C07E85D025CCAC6C00474475 /* GITCommits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GITCommits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07E85D325CCAC6C00474475 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07E85D525CCAC6C00474475 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C07E85D725CCAC6C00474475 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C07E85DA25CCAC6C00474475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C07E85DC25CCAC6E00474475 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C07E85DF25CCAC6E00474475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +54,11 @@
 		C07E85F525CCAC6E00474475 /* GITCommitsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GITCommitsUITests.swift; sourceTree = "<group>"; };
 		C07E85F725CCAC6E00474475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07E860C25CCAD1400474475 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		C07E861625CCB46A00474475 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
+		C0F34BF025CD18A400253C8F /* GitCommitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitCommitsViewController.swift; sourceTree = "<group>"; };
+		C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
+		C0F34C0125CD1B2400253C8F /* GitCommitsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommitsTableViewCell.swift; sourceTree = "<group>"; };
+		C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommitsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +110,12 @@
 			isa = PBXGroup;
 			children = (
 				C07E860C25CCAD1400474475 /* README.md */,
+				C07E861425CCB38200474475 /* Models */,
+				C07E861325CCB35100474475 /* NetworkAPI */,
+				C07E861225CCB33A00474475 /* Controllers */,
+				C07E861125CCB32A00474475 /* ViewModels */,
 				C07E85D325CCAC6C00474475 /* AppDelegate.swift */,
 				C07E85D525CCAC6C00474475 /* SceneDelegate.swift */,
-				C07E85D725CCAC6C00474475 /* ViewController.swift */,
 				C07E85D925CCAC6C00474475 /* Main.storyboard */,
 				C07E85DC25CCAC6E00474475 /* Assets.xcassets */,
 				C07E85DE25CCAC6E00474475 /* LaunchScreen.storyboard */,
@@ -129,6 +140,47 @@
 				C07E85F725CCAC6E00474475 /* Info.plist */,
 			);
 			path = GITCommitsUITests;
+			sourceTree = "<group>";
+		};
+		C07E861125CCB32A00474475 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C07E861225CCB33A00474475 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0F34C0025CD1AF300253C8F /* Cell */,
+				C0F34BF025CD18A400253C8F /* GitCommitsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C07E861325CCB35100474475 /* NetworkAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */,
+			);
+			path = NetworkAPI;
+			sourceTree = "<group>";
+		};
+		C07E861425CCB38200474475 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C07E861625CCB46A00474475 /* GitCommit.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C0F34C0025CD1AF300253C8F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C0F34C0125CD1B2400253C8F /* GitCommitsTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +314,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C07E85D825CCAC6C00474475 /* ViewController.swift in Sources */,
 				C07E85D425CCAC6C00474475 /* AppDelegate.swift in Sources */,
 				C07E85D625CCAC6C00474475 /* SceneDelegate.swift in Sources */,
+				C0F34BF125CD18A400253C8F /* GitCommitsViewController.swift in Sources */,
+				C0F34C0A25CD1C5400253C8F /* GitCommitsViewModel.swift in Sources */,
+				C0F34C0225CD1B2400253C8F /* GitCommitsTableViewCell.swift in Sources */,
+				C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */,
+				C07E861725CCB46A00474475 /* GitCommit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
