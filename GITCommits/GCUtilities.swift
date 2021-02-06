@@ -33,3 +33,15 @@ struct ParagraphStyles {
         return paragraphStyle
     }
 }
+
+struct GenericStrings {
+    static let emptyString          = ""
+    static let doubleLine           = "\n\n"
+    static let author               = "Author:\n"
+    static let hash                 = "Commit Hash:\n"
+    static let message              = "Commit Message:\n"
+    static let error                = "Error"
+    static let cancel               = "Cancel"
+    static let somethingWentWrong   = "Something went wrong, try again!"
+}
+

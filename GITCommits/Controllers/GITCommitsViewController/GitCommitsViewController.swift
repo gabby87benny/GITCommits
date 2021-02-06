@@ -9,11 +9,19 @@ import UIKit
 
 struct GitCommitsViewControllerConstants {
     static let tableViewCellIdentifier = "GitCommitsCellId"
+    static let activityIndicatorIdentifier = "ActivityIndicatorViewId"
 }
 
 class GitCommitsViewController: UIViewController {
     @IBOutlet weak var tblViewRecentCommits: UITableView!
     let vm = GitCommitsViewModel()
+    
+    lazy var spinnerView: ActivityIndicatorViewController = {
+        guard let spinnerVC = self.storyboard?.instantiateViewController(identifier: GitCommitsViewControllerConstants.activityIndicatorIdentifier) as? ActivityIndicatorViewController else {
+            return ActivityIndicatorViewController()
+        }
+        return spinnerVC
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +29,13 @@ class GitCommitsViewController: UIViewController {
     }
 
     func fetchData() {
-        vm.getRecentGitCommits { (commits, error) in
+        spinnerView.showActivityIndicatorView(on: self)
+        
+        vm.getRecentGitCommits { [weak self] (commits, error) in
+            self?.spinnerView.removeActivityIndicatorView()
+            
             if commits.count > 0 {
-                self.tblViewRecentCommits.reloadData()
+                self?.tblViewRecentCommits.reloadData()
             }
             
             if let nError = error {

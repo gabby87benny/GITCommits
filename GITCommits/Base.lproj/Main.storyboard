@@ -70,6 +70,33 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="103.79464285714285"/>
         </scene>
+        <!--Activity Indicator View Controller-->
+        <scene sceneID="sPd-BM-8QK">
+            <objects>
+                <viewController storyboardIdentifier="ActivityIndicatorViewId" id="T80-Y5-rDx" customClass="ActivityIndicatorViewController" customModule="GITCommits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b8T-12-O0f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uUY-0b-NXy">
+                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Pce-mu-mNJ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uUY-0b-NXy" firstAttribute="centerX" secondItem="Pce-mu-mNJ" secondAttribute="centerX" id="Gjj-hB-jub"/>
+                            <constraint firstItem="uUY-0b-NXy" firstAttribute="centerY" secondItem="Pce-mu-mNJ" secondAttribute="centerY" id="b7z-gr-uyj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="spinner" destination="uUY-0b-NXy" id="f1M-g2-EU9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ee0-2m-XV7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="930" y="104"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
