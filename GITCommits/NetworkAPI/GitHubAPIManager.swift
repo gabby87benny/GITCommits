@@ -8,7 +8,8 @@
 import Foundation
 
 struct GitURLConstants {
-    static let url = "https://api.github.com/repos/gabby87benny/BJKit/commits"
+    //static let url = "https://api.github.com/repos/gabby87benny/BJKit/commits"
+    static let url = "https://api.github.com/repos/apple/swift/commits"
 }
 
 struct GenericStrings {
@@ -33,39 +34,59 @@ struct JsonKeys {
 class GitHubAPIManager {
     static let shared = GitHubAPIManager()
     typealias GenericDictionary = [String:Any]
+    private let jsonDecoder = JSONDecoder()
     
-    final func getRecentGitCommits(compilitionHandler: @escaping (_ list:[GitCommit]?) -> ()) {
-        guard let url = URL(string: GitURLConstants.url) else { compilitionHandler(nil); return }
+    final func getRecentGitCommits(compilitionHandler: @escaping (_ list:[GitCommit]?, Error?) -> ()) {
+        guard let url = URL(string: GitURLConstants.url) else { compilitionHandler(nil, nil); return }
         URLSession.shared.dataTask(with: url) { [weak self] (optionalData, optionalResponse, optionalError) in
-            guard let strongRef = self else { compilitionHandler(nil); return }
+            
+            guard let strongRef = self else { compilitionHandler(nil, nil); return }
             guard optionalError == nil,
-                  strongRef.isResponseOk(optionalResponse: optionalResponse),
-                  let data = optionalData, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) else { compilitionHandler(nil); return }
-            compilitionHandler(strongRef.parseData(jsonResponse))
+                  strongRef.isValidResponse(optionalResponse: optionalResponse),
+                  let data = optionalData, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) else { compilitionHandler(nil, nil); return }
+            
+            if let gCommits = strongRef.parseData(jsonResponse) {
+                DispatchQueue.main.async {
+                    compilitionHandler(gCommits, nil)
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    compilitionHandler(nil, nil)
+                }
+            }
         }.resume()
     }
     
-    private func parseData (_ jsonResponse: Any) -> [GitCommit]? {
-        guard let jsonArr = jsonResponse as? [GenericDictionary] else { return nil }
-        
+    private func parseData (_ data: Any) -> [GitCommit]? {
+        guard let jsonArr = data as? [GenericDictionary] else { return nil }
         var commitList = [GitCommit]()
-        
+
         for json in jsonArr {
             guard let sha = json[JsonKeys.sha] as? String,
                   let commit = json[JsonKeys.commit] as? GenericDictionary,
                   let author = commit[JsonKeys.author] as? GenericDictionary, let name = author[JsonKeys.name] as? String,
                   let message = commit[JsonKeys.message] as? String
             else { continue }
-            
+
             commitList.append(GitCommit(author: name, hash: sha, message: message))
         }
-        
+
         // TODO: Filter 25 at least
-        
+
         return commitList
+        
+        
+//        do {
+//            let restaurants = try jsonDecoder.decode([GitCommit].self, from: data)
+//            return restaurants
+//        } catch {
+//            print("parsing error: \(error)")
+//            return nil
+//        }
     }
     
-    private func isResponseOk (optionalResponse: URLResponse?) -> Bool {
+    private func isValidResponse(optionalResponse: URLResponse?) -> Bool {
         guard let response = optionalResponse as? HTTPURLResponse, response.statusCode == 200 else { return false }
         return true
     }

@@ -16,9 +16,10 @@ class GitCommitsViewModel {
     }
     
     func getRecentGitCommits(completion: @escaping CompletionResult) {        
-        GitHubAPIManager.shared.getRecentGitCommits { [weak self] gitCommits in
+        GitHubAPIManager.shared.getRecentGitCommits { [weak self] gitCommits, error in
             if let commits = gitCommits {
                 self?.gitCommits = commits
+                completion(commits, error)
             }
         }
     }
