@@ -6,58 +6,67 @@
 //
 
 import Foundation
-import UIKit
 
-struct Fonts {
-    static let boldFont     = UIFont.preferredFont(forTextStyle: .headline)
-    static let regularFont  = UIFont.preferredFont(forTextStyle: .body)
-}
-
-struct Colors {
-    static let red      = UIColor.red
-    static let blue     = UIColor.blue
-    static let gary     = UIColor.darkGray
-}
-
-struct StringAttributes {
-    static let redBold      = [NSAttributedString.Key.font : Fonts.boldFont,    NSAttributedString.Key.foregroundColor: Colors.red]
-    static let blueRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: Colors.blue]
-    static let garyRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: Colors.gary, NSAttributedString.Key.paragraphStyle: ParagraphStyles.defaultStyle]
-}
-
-struct ParagraphStyles {
-    static var defaultStyle: NSMutableParagraphStyle {
-        let paragraphStyle           = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing   = 4.0
-        paragraphStyle.lineBreakMode = .byWordWrapping
-        return paragraphStyle
-    }
+struct GitCommitInfoResponse: Decodable {
+    var commit: GitCommit
 }
 
 struct GitCommit: Decodable {
-    let author: String
+    let name: String
     let hash: String
     let message: String
     
-    init(author: String, hash: String, message: String) {
-        self.author     = author
-        self.hash       = hash
-        self.message    = message
+    enum RootCodingKeys: String, CodingKey {
+        case author
+        case message
+        case tree
+    }
+    
+    enum AuthorCodingKeys: String, CodingKey {
+        case name
+        case email
+        case date
+    }
+    
+    enum TreeCodingKeys: String, CodingKey {
+        case hash = "sha"
+        case url
+    }
+    
+    enum CommitInfoCodingKeys: String, CodingKey {
+        case author
+        case message
+        case tree
     }
 }
 
-/// MARK:- extensions
+/// MARK:- Extensions
+
+extension GitCommit {
+    init(from decoder: Decoder) throws {
+        let rootContainer = try decoder.container(keyedBy: RootCodingKeys.self)
+        
+        let authorInfoContainer = try rootContainer.nestedContainer(keyedBy: AuthorCodingKeys.self, forKey: .author)
+        self.name = try authorInfoContainer.decode(String.self, forKey: .name)
+        
+        let treeInfoContainer = try rootContainer.nestedContainer(keyedBy: TreeCodingKeys.self, forKey: .tree)
+        self.hash = try treeInfoContainer.decode(String.self, forKey: .hash)
+        
+        self.message = try rootContainer.decode(String.self, forKey: .message)
+    }
+}
+
 extension GitCommit {
     func prettyString () -> NSAttributedString {
-        let attribuetdString = NSMutableAttributedString(string: GenericStrings.emptyString)
-        attribuetdString.append(NSAttributedString(string: formAuthorString(),   attributes: StringAttributes.redBold))
-        attribuetdString.append(NSAttributedString(string: formHashString(),     attributes: StringAttributes.blueRegular))
-        attribuetdString.append(NSAttributedString(string: formMessageString(),  attributes: StringAttributes.garyRegular))
-        return attribuetdString
+        let attributedString = NSMutableAttributedString(string: GenericStrings.emptyString)
+        attributedString.append(NSAttributedString(string: formAuthorString(),   attributes: StringAttributes.redBold))
+        attributedString.append(NSAttributedString(string: formHashString(),     attributes: StringAttributes.blueRegular))
+        attributedString.append(NSAttributedString(string: formMessageString(),  attributes: StringAttributes.garyRegular))
+        return attributedString
     }
     
     func formAuthorString () -> String {
-        return "\(GenericStrings.author)\(self.author.trimSpaces())\(GenericStrings.doubleLine)"
+        return "\(GenericStrings.author)\(self.name.trimSpaces())\(GenericStrings.doubleLine)"
     }
     
     func formHashString () -> String {
@@ -66,18 +75,6 @@ extension GitCommit {
     
     func formMessageString () -> String {
         return "\(GenericStrings.message)\(self.message.trimSpaces())"
-    }
-}
-
-extension String {
-    func trimSpaces () -> String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-}
-
-extension Collection {
-    subscript(safe index: Index) -> Element? {
-        return self.indices.contains(index) ? self[index] : nil
     }
 }
 

@@ -36,54 +36,36 @@ class GitHubAPIManager {
     typealias GenericDictionary = [String:Any]
     private let jsonDecoder = JSONDecoder()
     
-    final func getRecentGitCommits(compilitionHandler: @escaping (_ list:[GitCommit]?, Error?) -> ()) {
-        guard let url = URL(string: GitURLConstants.url) else { compilitionHandler(nil, nil); return }
+    final func getRecentGitCommits(completionHandler: @escaping (_ list:[GitCommit]?, Error?) -> ()) {
+        guard let url = URL(string: GitURLConstants.url) else { completionHandler(nil, nil); return }
         URLSession.shared.dataTask(with: url) { [weak self] (optionalData, optionalResponse, optionalError) in
-            
-            guard let strongRef = self else { compilitionHandler(nil, nil); return }
+            guard let strongRef = self else { completionHandler(nil, nil); return }
             guard optionalError == nil,
                   strongRef.isValidResponse(optionalResponse: optionalResponse),
-                  let data = optionalData, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) else { compilitionHandler(nil, nil); return }
+                  let data = optionalData else { completionHandler(nil, nil); return }
             
-            if let gCommits = strongRef.parseData(jsonResponse) {
+            if let gCommits = strongRef.parseData(data) {
                 DispatchQueue.main.async {
-                    compilitionHandler(gCommits, nil)
+                    completionHandler(gCommits, nil)
                 }
             }
             else {
                 DispatchQueue.main.async {
-                    compilitionHandler(nil, nil)
+                    completionHandler(nil, nil)
                 }
             }
         }.resume()
     }
     
-    private func parseData (_ data: Any) -> [GitCommit]? {
-        guard let jsonArr = data as? [GenericDictionary] else { return nil }
-        var commitList = [GitCommit]()
-
-        for json in jsonArr {
-            guard let sha = json[JsonKeys.sha] as? String,
-                  let commit = json[JsonKeys.commit] as? GenericDictionary,
-                  let author = commit[JsonKeys.author] as? GenericDictionary, let name = author[JsonKeys.name] as? String,
-                  let message = commit[JsonKeys.message] as? String
-            else { continue }
-
-            commitList.append(GitCommit(author: name, hash: sha, message: message))
+    private func parseData (_ data: Data) -> [GitCommit]? {
+        do {
+            let gitCommitsInfo = try jsonDecoder.decode([GitCommitInfoResponse].self, from: data)
+            let gitCommit = gitCommitsInfo.map({$0.commit})
+            return gitCommit
+        } catch {
+            print("parsing error: \(error)")
+            return nil
         }
-
-        // TODO: Filter 25 at least
-
-        return commitList
-        
-        
-//        do {
-//            let restaurants = try jsonDecoder.decode([GitCommit].self, from: data)
-//            return restaurants
-//        } catch {
-//            print("parsing error: \(error)")
-//            return nil
-//        }
     }
     
     private func isValidResponse(optionalResponse: URLResponse?) -> Bool {
