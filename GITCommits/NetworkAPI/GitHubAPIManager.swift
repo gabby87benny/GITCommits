@@ -8,27 +8,7 @@
 import Foundation
 
 struct GitURLConstants {
-    //static let url = "https://api.github.com/repos/gabby87benny/BJKit/commits"
     static let url = "https://api.github.com/repos/apple/swift/commits"
-}
-
-struct GenericStrings {
-    static let emptyString          = ""
-    static let doubleLine           = "\n\n"
-    static let author               = "Author:\n"
-    static let hash                 = "Commit Hash:\n"
-    static let message              = "Commit Message:\n"
-    static let error                = "Error"
-    static let cancel               = "Cancel"
-    static let somethingWentWrong   = "Something went wrong, try again!"
-}
-
-struct JsonKeys {
-    static let sha      = "sha"
-    static let commit   = "commit"
-    static let author   = "author"
-    static let name     = "name"
-    static let message  = "message"
 }
 
 class GitHubAPIManager {
