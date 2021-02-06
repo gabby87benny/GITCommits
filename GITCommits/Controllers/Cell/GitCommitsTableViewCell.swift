@@ -9,10 +9,18 @@ import UIKit
 
 class GitCommitsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblAuthorName: UILabel!
+    @IBOutlet weak var lblGitCommitInfo: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    var gitCommit: GitCommit? {
+        didSet {
+            if let gCommit = gitCommit {
+                self.lblGitCommitInfo.attributedText = gCommit.prettyString()
+            }
+        }
     }
 }
