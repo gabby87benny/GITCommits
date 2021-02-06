@@ -12,20 +12,36 @@ struct GitCommitsViewControllerConstants {
 }
 
 class GitCommitsViewController: UIViewController {
-
     @IBOutlet weak var tblViewRecentCommits: UITableView!
+    let vm = GitCommitsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        fetchData()
     }
 
-
+    func fetchData() {
+        vm.getRecentGitCommits { (commits, error) in
+            if commits.count > 0 {
+                self.tblViewRecentCommits.reloadData()
+            }
+            
+            if let nError = error {
+                print("Error while fetching GIT commits list : \(nError)")
+            }
+        }
+    }
+    
+    func calculateCellHeight(inString: NSAttributedString) -> CGFloat
+    {
+        let rect : CGRect = inString.boundingRect(with: CGSize(width: tblViewRecentCommits.frame.size.width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        return rect.height
+    }
 }
 
 extension GitCommitsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return vm.gitCommitsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +49,23 @@ extension GitCommitsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-
+        let gCommit = vm.gitCommit(at: indexPath)
+        cell.gitCommit = gCommit
         return cell
+    }
+}
+
+extension GitCommitsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let gCommit = vm.gitCommit(at: indexPath) {
+            let heightOfRow = self.calculateCellHeight(inString: gCommit.prettyString())
+            return (heightOfRow + 60.0)
+        }
+        
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
