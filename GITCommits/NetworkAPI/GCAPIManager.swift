@@ -1,5 +1,5 @@
 //
-//  GitHubAPIManager.swift
+//  GCAPIManager.swift
 //  GITCommits
 //
 //  Created by Gabriel on 2/5/21.
@@ -25,14 +25,13 @@ enum Result {
 
 typealias QueryResult = (Result) -> ()
 
-protocol GitHubAPIManager_Protocol {
+protocol GCAPIManager_Protocol {
     func getRecentGitCommits(completionHandler: @escaping QueryResult)
 }
 
-class GitHubAPIManager: GitHubAPIManager_Protocol {
+class GCAPIManager: GCAPIManager_Protocol {
     typealias GenericDictionary = [String:Any]
     private let jsonDecoder: JSONDecoder
-    
     var rapidError = GCError.GCErrorNone
     
     init() {

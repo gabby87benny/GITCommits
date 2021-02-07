@@ -22,7 +22,7 @@
 		C0C8193C25CE792000CAC347 /* GitCommitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193925CE792000CAC347 /* GitCommitsTableViewCell.swift */; };
 		C0C8193D25CE792000CAC347 /* GitCommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193A25CE792000CAC347 /* GitCommitsViewController.swift */; };
 		C0C8195525CF8FC000CAC347 /* GCAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8195425CF8FC000CAC347 /* GCAlertPresenter.swift */; };
-		C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */; };
+		C0F34BF625CD190D00253C8F /* GCAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34BF525CD190D00253C8F /* GCAPIManager.swift */; };
 		C0F34C0A25CD1C5400253C8F /* GitCommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		C0C8193925CE792000CAC347 /* GitCommitsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitCommitsTableViewCell.swift; sourceTree = "<group>"; };
 		C0C8193A25CE792000CAC347 /* GitCommitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitCommitsViewController.swift; sourceTree = "<group>"; };
 		C0C8195425CF8FC000CAC347 /* GCAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCAlertPresenter.swift; sourceTree = "<group>"; };
-		C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
+		C0F34BF525CD190D00253C8F /* GCAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAPIManager.swift; sourceTree = "<group>"; };
 		C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommitsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,7 +173,7 @@
 		C07E861325CCB35100474475 /* NetworkAPI */ = {
 			isa = PBXGroup;
 			children = (
-				C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */,
+				C0F34BF525CD190D00253C8F /* GCAPIManager.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 				C0C8193D25CE792000CAC347 /* GitCommitsViewController.swift in Sources */,
 				C0C8195525CF8FC000CAC347 /* GCAlertPresenter.swift in Sources */,
 				C0C8191025CE330E00CAC347 /* GCUtilities.swift in Sources */,
-				C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */,
+				C0F34BF625CD190D00253C8F /* GCAPIManager.swift in Sources */,
 				C0C8193C25CE792000CAC347 /* GitCommitsTableViewCell.swift in Sources */,
 				C07E861725CCB46A00474475 /* GitCommit.swift in Sources */,
 				C0C8190525CE32B500CAC347 /* GCExtensions.swift in Sources */,

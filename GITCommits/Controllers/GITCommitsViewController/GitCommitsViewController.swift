@@ -37,7 +37,6 @@ class GitCommitsViewController: UIViewController {
         return spinnerVC
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()

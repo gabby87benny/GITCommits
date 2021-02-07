@@ -10,9 +10,9 @@ import Foundation
 class GitCommitsViewModel {
     private var gitCommits: [GitCommit]
     typealias CompletionResult = ([GitCommit], Error?) -> ()
-    private let mobileService: GitHubAPIManager_Protocol
+    private let mobileService: GCAPIManager_Protocol
     
-    init(gitCommits: [GitCommit] = [], mobileService: GitHubAPIManager_Protocol = GitHubAPIManager()) {
+    init(gitCommits: [GitCommit] = [], mobileService: GCAPIManager_Protocol = GCAPIManager()) {
         self.gitCommits = gitCommits
         self.mobileService = mobileService
     }
