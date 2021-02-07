@@ -14,7 +14,21 @@ struct GitCommitsViewControllerConstants {
 
 class GitCommitsViewController: UIViewController {
     @IBOutlet weak var tblViewRecentCommits: UITableView!
-    let vm = GitCommitsViewModel()
+    
+    private var gcViewModel : GitCommitsViewModel
+    private var alertPresenter: GCAlertPresenter_Protocol
+
+    init(viewModel: GitCommitsViewModel = GitCommitsViewModel(), alertPresenter: GCAlertPresenter_Protocol = GCAlertPresenter()) {
+        self.gcViewModel = viewModel
+        self.alertPresenter = alertPresenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        self.gcViewModel = GitCommitsViewModel()
+        self.alertPresenter = GCAlertPresenter()
+        super.init(coder: coder)
+    }
     
     lazy var spinnerView: ActivityIndicatorViewController = {
         guard let spinnerVC = self.storyboard?.instantiateViewController(identifier: GitCommitsViewControllerConstants.activityIndicatorIdentifier) as? ActivityIndicatorViewController else {
@@ -22,6 +36,7 @@ class GitCommitsViewController: UIViewController {
         }
         return spinnerVC
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +46,7 @@ class GitCommitsViewController: UIViewController {
     func fetchData() {
         spinnerView.showActivityIndicatorView(on: self)
         
-        vm.getRecentGitCommits { [weak self] (commits, error) in
+        gcViewModel.getRecentGitCommits { [weak self] (commits, error) in
             self?.spinnerView.removeActivityIndicatorView()
             
             if commits.count > 0 {
@@ -40,6 +55,11 @@ class GitCommitsViewController: UIViewController {
             
             if let nError = error {
                 print("Error while fetching GIT commits list : \(nError)")
+                guard let self = self else { return }
+                self.alertPresenter.present(from: self,
+                                            title: "Error",
+                                            message: "Github API service is failed.",
+                                            dismissButtonTitle: "OK")
             }
         }
     }
@@ -53,7 +73,7 @@ class GitCommitsViewController: UIViewController {
 
 extension GitCommitsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.gitCommitsCount()
+        return gcViewModel.gitCommitsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +81,7 @@ extension GitCommitsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let gCommit = vm.gitCommit(at: indexPath)
+        let gCommit = gcViewModel.gitCommit(at: indexPath)
         cell.gitCommit = gCommit
         return cell
     }
@@ -69,7 +89,7 @@ extension GitCommitsViewController: UITableViewDataSource {
 
 extension GitCommitsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let gCommit = vm.gitCommit(at: indexPath) {
+        if let gCommit = gcViewModel.gitCommit(at: indexPath) {
             let heightOfRow = self.calculateCellHeight(inString: gCommit.prettyString())
             return (heightOfRow + 60.0)
         }

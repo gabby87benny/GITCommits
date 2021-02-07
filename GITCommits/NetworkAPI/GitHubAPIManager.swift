@@ -11,27 +11,62 @@ struct GitURLConstants {
     static let url = "https://api.github.com/repos/apple/swift/commits"
 }
 
-class GitHubAPIManager {
-    static let shared = GitHubAPIManager()
+enum GCError: Error {
+    case GCErrorNone
+    case GCErrorNetwork
+    case GCErrorBadParsing
+    case GCErrorOther
+}
+
+enum Result {
+    case success([GitCommit]?)
+    case failure(Error)
+}
+
+typealias QueryResult = (Result) -> ()
+
+protocol GitHubAPIManager_Protocol {
+    func getRecentGitCommits(completionHandler: @escaping QueryResult)
+}
+
+class GitHubAPIManager: GitHubAPIManager_Protocol {
     typealias GenericDictionary = [String:Any]
-    private let jsonDecoder = JSONDecoder()
+    private let jsonDecoder: JSONDecoder
     
-    final func getRecentGitCommits(completionHandler: @escaping (_ list:[GitCommit]?, Error?) -> ()) {
-        guard let url = URL(string: GitURLConstants.url) else { completionHandler(nil, nil); return }
+    var rapidError = GCError.GCErrorNone
+    
+    init() {
+        self.jsonDecoder = JSONDecoder()
+    }
+    
+    final func getRecentGitCommits(completionHandler: @escaping QueryResult) {
+        guard let url = URL(string: GitURLConstants.url) else { completionHandler(.failure(GCError.GCErrorOther)); return }
+        
         URLSession.shared.dataTask(with: url) { [weak self] (optionalData, optionalResponse, optionalError) in
-            guard let strongRef = self else { completionHandler(nil, nil); return }
+            guard let strongRef = self else {
+                DispatchQueue.main.async {
+                    completionHandler(.failure(GCError.GCErrorOther))
+                }
+                return
+            }
+            
             guard optionalError == nil,
                   strongRef.isValidResponse(optionalResponse: optionalResponse),
-                  let data = optionalData else { completionHandler(nil, nil); return }
+                  let data = optionalData else {
+                DispatchQueue.main.async {
+                    completionHandler(.failure(GCError.GCErrorOther))
+                }
+                return
+            }
             
             if let gCommits = strongRef.parseData(data) {
                 DispatchQueue.main.async {
-                    completionHandler(gCommits, nil)
+                    completionHandler(.success(gCommits))
                 }
             }
             else {
                 DispatchQueue.main.async {
-                    completionHandler(nil, nil)
+                    completionHandler(.failure(GCError.GCErrorBadParsing))
                 }
             }
         }.resume()

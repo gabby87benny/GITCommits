@@ -21,6 +21,7 @@
 		C0C8193B25CE792000CAC347 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193625CE792000CAC347 /* ActivityIndicatorViewController.swift */; };
 		C0C8193C25CE792000CAC347 /* GitCommitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193925CE792000CAC347 /* GitCommitsTableViewCell.swift */; };
 		C0C8193D25CE792000CAC347 /* GitCommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193A25CE792000CAC347 /* GitCommitsViewController.swift */; };
+		C0C8195525CF8FC000CAC347 /* GCAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8195425CF8FC000CAC347 /* GCAlertPresenter.swift */; };
 		C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */; };
 		C0F34C0A25CD1C5400253C8F /* GitCommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		C0C8193625CE792000CAC347 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
 		C0C8193925CE792000CAC347 /* GitCommitsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitCommitsTableViewCell.swift; sourceTree = "<group>"; };
 		C0C8193A25CE792000CAC347 /* GitCommitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitCommitsViewController.swift; sourceTree = "<group>"; };
+		C0C8195425CF8FC000CAC347 /* GCAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCAlertPresenter.swift; sourceTree = "<group>"; };
 		C0F34BF525CD190D00253C8F /* GitHubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		C0F34C0925CD1C5400253C8F /* GitCommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommitsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,11 +118,12 @@
 			isa = PBXGroup;
 			children = (
 				C07E860C25CCAD1400474475 /* README.md */,
-				C0C8190325CE325C00CAC347 /* Extensions */,
 				C07E861425CCB38200474475 /* Models */,
-				C07E861325CCB35100474475 /* NetworkAPI */,
-				C07E861225CCB33A00474475 /* Controllers */,
+				C0C8195325CF8F9600CAC347 /* Views */,
 				C07E861125CCB32A00474475 /* ViewModels */,
+				C07E861225CCB33A00474475 /* Controllers */,
+				C0C8190325CE325C00CAC347 /* Extensions */,
+				C07E861325CCB35100474475 /* NetworkAPI */,
 				C07E85D325CCAC6C00474475 /* AppDelegate.swift */,
 				C07E85D525CCAC6C00474475 /* SceneDelegate.swift */,
 				C07E85D925CCAC6C00474475 /* Main.storyboard */,
@@ -214,6 +217,14 @@
 				C0C8193925CE792000CAC347 /* GitCommitsTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C0C8195325CF8F9600CAC347 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C0C8195425CF8FC000CAC347 /* GCAlertPresenter.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +363,7 @@
 				C07E85D625CCAC6C00474475 /* SceneDelegate.swift in Sources */,
 				C0F34C0A25CD1C5400253C8F /* GitCommitsViewModel.swift in Sources */,
 				C0C8193D25CE792000CAC347 /* GitCommitsViewController.swift in Sources */,
+				C0C8195525CF8FC000CAC347 /* GCAlertPresenter.swift in Sources */,
 				C0C8191025CE330E00CAC347 /* GCUtilities.swift in Sources */,
 				C0F34BF625CD190D00253C8F /* GitHubAPIManager.swift in Sources */,
 				C0C8193C25CE792000CAC347 /* GitCommitsTableViewCell.swift in Sources */,

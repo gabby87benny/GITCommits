@@ -10,16 +10,25 @@ import Foundation
 class GitCommitsViewModel {
     private var gitCommits: [GitCommit]
     typealias CompletionResult = ([GitCommit], Error?) -> ()
+    private let mobileService: GitHubAPIManager_Protocol
     
-    init(gitCommits: [GitCommit] = []) {
+    init(gitCommits: [GitCommit] = [], mobileService: GitHubAPIManager_Protocol = GitHubAPIManager()) {
         self.gitCommits = gitCommits
+        self.mobileService = mobileService
     }
     
     func getRecentGitCommits(completion: @escaping CompletionResult) {        
-        GitHubAPIManager.shared.getRecentGitCommits { [weak self] gitCommits, error in
-            if let gitCommits = gitCommits {
-                self?.gitCommits = gitCommits
-                completion(gitCommits, error)
+        self.mobileService.getRecentGitCommits { [weak self] result in
+            switch result {
+            case .success(let gCommits):
+                if let gitCommits = gCommits {
+                    self?.gitCommits = gitCommits
+                    completion(gitCommits, nil)
+                }
+                
+            case .failure(let error):
+                print("Error: \(error)")
+                completion([], error)
             }
         }
     }
