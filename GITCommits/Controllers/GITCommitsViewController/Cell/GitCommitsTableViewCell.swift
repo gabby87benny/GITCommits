@@ -10,12 +10,7 @@ import UIKit
 class GitCommitsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lblGitCommitInfo: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+
     var gitCommit: GitCommit? {
         didSet {
             if let gCommit = gitCommit {
