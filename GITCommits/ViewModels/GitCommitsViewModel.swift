@@ -17,6 +17,13 @@ class GitCommitsViewModel {
         self.mobileService = mobileService
     }
     
+    /**
+    Fetches data by querying the API Manager
+
+    - Parameters:
+       - completion: Completion handler
+    */
+    
     func getRecentGitCommits(completion: @escaping CompletionResult) {        
         self.mobileService.getRecentGitCommits { [weak self] result in
             switch result {

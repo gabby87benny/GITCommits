@@ -17,6 +17,8 @@ class GitCommitsViewController: UIViewController {
     
     private var gcViewModel : GitCommitsViewModel
     private var alertPresenter: GCAlertPresenter_Protocol
+    
+    var spinnerView: ActivityIndicatorViewController?
 
     init(viewModel: GitCommitsViewModel = GitCommitsViewModel(), alertPresenter: GCAlertPresenter_Protocol = GCAlertPresenter()) {
         self.gcViewModel = viewModel
@@ -30,23 +32,28 @@ class GitCommitsViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    lazy var spinnerView: ActivityIndicatorViewController = {
+    func initializeSpinner() {
         guard let spinnerVC = self.storyboard?.instantiateViewController(identifier: GitCommitsViewControllerConstants.activityIndicatorIdentifier) as? ActivityIndicatorViewController else {
-            return ActivityIndicatorViewController()
+            return
         }
-        return spinnerVC
-    }()
+        self.spinnerView = spinnerVC
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeSpinner()
         fetchData()
     }
 
+    /**
+    Fetches data on view load.
+    */
+    
     func fetchData() {
-        spinnerView.showActivityIndicatorView(on: self)
+        spinnerView?.showActivityIndicatorView(on: self)
         
         gcViewModel.getRecentGitCommits { [weak self] (commits, error) in
-            self?.spinnerView.removeActivityIndicatorView()
+            self?.spinnerView?.removeActivityIndicatorView()
             
             if commits.count > 0 {
                 self?.tblViewRecentCommits.reloadData()
@@ -63,12 +70,23 @@ class GitCommitsViewController: UIViewController {
         }
     }
     
+    /**
+    Returns height of table view cell based on text.
+
+    - Parameters:
+       - inString: The attributed string input
+     
+    - Returns: The height value of cell
+    */
+    
     func calculateCellHeight(inString: NSAttributedString) -> CGFloat
     {
         let rect : CGRect = inString.boundingRect(with: CGSize(width: tblViewRecentCommits.frame.size.width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         return rect.height
     }
 }
+
+//MARK: Table view data source
 
 extension GitCommitsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,6 +103,8 @@ extension GitCommitsViewController: UITableViewDataSource {
         return cell
     }
 }
+
+//MARK: Table view delegates
 
 extension GitCommitsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

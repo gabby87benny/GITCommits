@@ -13,16 +13,10 @@ struct Fonts {
     static let regularFont  = UIFont.preferredFont(forTextStyle: .body)
 }
 
-struct Colors {
-    static let red      = UIColor.red
-    static let blue     = UIColor.blue
-    static let gary     = UIColor.darkGray
-}
-
 struct StringAttributes {
-    static let redBold      = [NSAttributedString.Key.font : Fonts.boldFont,    NSAttributedString.Key.foregroundColor: Colors.red]
-    static let blueRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: Colors.blue]
-    static let garyRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: Colors.gary, NSAttributedString.Key.paragraphStyle: ParagraphStyles.defaultStyle]
+    static let redBold      = [NSAttributedString.Key.font : Fonts.boldFont,    NSAttributedString.Key.foregroundColor: UIColor.systemBlue]
+    static let blueRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: UIColor.orange]
+    static let grayRegular  = [NSAttributedString.Key.font : Fonts.regularFont, NSAttributedString.Key.foregroundColor: UIColor.purple, NSAttributedString.Key.paragraphStyle: ParagraphStyles.defaultStyle]
 }
 
 struct ParagraphStyles {
@@ -37,7 +31,7 @@ struct ParagraphStyles {
 struct GenericStrings {
     static let emptyString          = ""
     static let doubleLine           = "\n\n"
-    static let author               = "Author:\n"
+    static let author               = "Author name:\n"
     static let hash                 = "Commit Hash:\n"
     static let message              = "Commit Message:\n"
     static let error                = "Error"
