@@ -8,7 +8,6 @@
 import UIKit
 
 class GitCommitsTableViewCell: UITableViewCell {
-
     @IBOutlet weak var lblGitCommitInfo: UILabel!
 
     var gitCommit: GitCommit? {

@@ -61,7 +61,7 @@ extension GitCommit {
         let attributedString = NSMutableAttributedString(string: GenericStrings.emptyString)
         attributedString.append(NSAttributedString(string: formAuthorString(),   attributes: StringAttributes.redBold))
         attributedString.append(NSAttributedString(string: formHashString(),     attributes: StringAttributes.blueRegular))
-        attributedString.append(NSAttributedString(string: formMessageString(),  attributes: StringAttributes.garyRegular))
+        attributedString.append(NSAttributedString(string: formMessageString(),  attributes: StringAttributes.grayRegular))
         return attributedString
     }
     

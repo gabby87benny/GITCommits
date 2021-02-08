@@ -12,10 +12,18 @@
 		C07E85DB25CCAC6C00474475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E85D925CCAC6C00474475 /* Main.storyboard */; };
 		C07E85DD25CCAC6E00474475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07E85DC25CCAC6E00474475 /* Assets.xcassets */; };
 		C07E85E025CCAC6E00474475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E85DE25CCAC6E00474475 /* LaunchScreen.storyboard */; };
-		C07E85EB25CCAC6E00474475 /* GITCommitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85EA25CCAC6E00474475 /* GITCommitsTests.swift */; };
+		C07E85EB25CCAC6E00474475 /* GITCommitsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85EA25CCAC6E00474475 /* GITCommitsViewControllerTests.swift */; };
 		C07E85F625CCAC6E00474475 /* GITCommitsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E85F525CCAC6E00474475 /* GITCommitsUITests.swift */; };
 		C07E860D25CCAD1400474475 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C07E860C25CCAD1400474475 /* README.md */; };
 		C07E861725CCB46A00474475 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E861625CCB46A00474475 /* GitCommit.swift */; };
+		C0B8407925CFB98000DB92A2 /* FakeGCAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8407825CFB98000DB92A2 /* FakeGCAlertPresenter.swift */; };
+		C0B8408125CFBA0F00DB92A2 /* FakeGitCommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8408025CFBA0F00DB92A2 /* FakeGitCommitsViewModel.swift */; };
+		C0B8408625CFBA3800DB92A2 /* FakeGCAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8408525CFBA3800DB92A2 /* FakeGCAPIManager.swift */; };
+		C0B8408B25CFBF3600DB92A2 /* GCAlertPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8408A25CFBF3600DB92A2 /* GCAlertPresenterTests.swift */; };
+		C0B8409325CFBF6900DB92A2 /* PartiallyFakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8409225CFBF6900DB92A2 /* PartiallyFakeViewController.swift */; };
+		C0B840A425CFC3C600DB92A2 /* GITCommitViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B840A325CFC3C600DB92A2 /* GITCommitViewModelTests.swift */; };
+		C0B840AC25CFC7CA00DB92A2 /* GCAPIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B840AB25CFC7CA00DB92A2 /* GCAPIManagerTests.swift */; };
+		C0B840C825D1231A00DB92A2 /* FakeActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B840C725D1231A00DB92A2 /* FakeActivityIndicatorViewController.swift */; };
 		C0C8190525CE32B500CAC347 /* GCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8190425CE32B500CAC347 /* GCExtensions.swift */; };
 		C0C8191025CE330E00CAC347 /* GCUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8190F25CE330E00CAC347 /* GCUtilities.swift */; };
 		C0C8193B25CE792000CAC347 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8193625CE792000CAC347 /* ActivityIndicatorViewController.swift */; };
@@ -52,13 +60,21 @@
 		C07E85DF25CCAC6E00474475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C07E85E125CCAC6E00474475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07E85E625CCAC6E00474475 /* GITCommitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GITCommitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C07E85EA25CCAC6E00474475 /* GITCommitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GITCommitsTests.swift; sourceTree = "<group>"; };
+		C07E85EA25CCAC6E00474475 /* GITCommitsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GITCommitsViewControllerTests.swift; sourceTree = "<group>"; };
 		C07E85EC25CCAC6E00474475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07E85F125CCAC6E00474475 /* GITCommitsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GITCommitsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07E85F525CCAC6E00474475 /* GITCommitsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GITCommitsUITests.swift; sourceTree = "<group>"; };
 		C07E85F725CCAC6E00474475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07E860C25CCAD1400474475 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		C07E861625CCB46A00474475 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
+		C0B8407825CFB98000DB92A2 /* FakeGCAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeGCAlertPresenter.swift; sourceTree = "<group>"; };
+		C0B8408025CFBA0F00DB92A2 /* FakeGitCommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeGitCommitsViewModel.swift; sourceTree = "<group>"; };
+		C0B8408525CFBA3800DB92A2 /* FakeGCAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeGCAPIManager.swift; sourceTree = "<group>"; };
+		C0B8408A25CFBF3600DB92A2 /* GCAlertPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCAlertPresenterTests.swift; sourceTree = "<group>"; };
+		C0B8409225CFBF6900DB92A2 /* PartiallyFakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartiallyFakeViewController.swift; sourceTree = "<group>"; };
+		C0B840A325CFC3C600DB92A2 /* GITCommitViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GITCommitViewModelTests.swift; sourceTree = "<group>"; };
+		C0B840AB25CFC7CA00DB92A2 /* GCAPIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCAPIManagerTests.swift; sourceTree = "<group>"; };
+		C0B840C725D1231A00DB92A2 /* FakeActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeActivityIndicatorViewController.swift; sourceTree = "<group>"; };
 		C0C8190425CE32B500CAC347 /* GCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCExtensions.swift; sourceTree = "<group>"; };
 		C0C8190F25CE330E00CAC347 /* GCUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCUtilities.swift; sourceTree = "<group>"; };
 		C0C8193625CE792000CAC347 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +154,11 @@
 		C07E85E925CCAC6E00474475 /* GITCommitsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C07E85EA25CCAC6E00474475 /* GITCommitsTests.swift */,
+				C0B8407725CFB92500DB92A2 /* TestFakes */,
+				C07E85EA25CCAC6E00474475 /* GITCommitsViewControllerTests.swift */,
+				C0B8408A25CFBF3600DB92A2 /* GCAlertPresenterTests.swift */,
+				C0B840A325CFC3C600DB92A2 /* GITCommitViewModelTests.swift */,
+				C0B840AB25CFC7CA00DB92A2 /* GCAPIManagerTests.swift */,
 				C07E85EC25CCAC6E00474475 /* Info.plist */,
 			);
 			path = GITCommitsTests;
@@ -184,6 +204,18 @@
 				C07E861625CCB46A00474475 /* GitCommit.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C0B8407725CFB92500DB92A2 /* TestFakes */ = {
+			isa = PBXGroup;
+			children = (
+				C0B8409225CFBF6900DB92A2 /* PartiallyFakeViewController.swift */,
+				C0B8407825CFB98000DB92A2 /* FakeGCAlertPresenter.swift */,
+				C0B8408025CFBA0F00DB92A2 /* FakeGitCommitsViewModel.swift */,
+				C0B8408525CFBA3800DB92A2 /* FakeGCAPIManager.swift */,
+				C0B840C725D1231A00DB92A2 /* FakeActivityIndicatorViewController.swift */,
+			);
+			path = TestFakes;
 			sourceTree = "<group>";
 		};
 		C0C8190325CE325C00CAC347 /* Extensions */ = {
@@ -376,7 +408,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C07E85EB25CCAC6E00474475 /* GITCommitsTests.swift in Sources */,
+				C0B8409325CFBF6900DB92A2 /* PartiallyFakeViewController.swift in Sources */,
+				C0B8407925CFB98000DB92A2 /* FakeGCAlertPresenter.swift in Sources */,
+				C0B8408125CFBA0F00DB92A2 /* FakeGitCommitsViewModel.swift in Sources */,
+				C0B840A425CFC3C600DB92A2 /* GITCommitViewModelTests.swift in Sources */,
+				C0B840C825D1231A00DB92A2 /* FakeActivityIndicatorViewController.swift in Sources */,
+				C0B840AC25CFC7CA00DB92A2 /* GCAPIManagerTests.swift in Sources */,
+				C0B8408B25CFBF3600DB92A2 /* GCAlertPresenterTests.swift in Sources */,
+				C07E85EB25CCAC6E00474475 /* GITCommitsViewControllerTests.swift in Sources */,
+				C0B8408625CFBA3800DB92A2 /* FakeGCAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
