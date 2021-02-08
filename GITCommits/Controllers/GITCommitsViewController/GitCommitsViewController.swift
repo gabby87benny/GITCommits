@@ -42,14 +42,14 @@ class GitCommitsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeSpinner()
-        fetchData()
+        fetchRecentGitCommits()
     }
 
     /**
-    Fetches data on view load.
+    Fetches recent git commits data on view load.
     */
     
-    func fetchData() {
+    func fetchRecentGitCommits() {
         spinnerView?.showActivityIndicatorView(on: self)
         
         gcViewModel.getRecentGitCommits { [weak self] (commits, error) in
